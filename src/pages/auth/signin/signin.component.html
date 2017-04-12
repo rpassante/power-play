@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Welcome To the Power Play
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h5>Sign-In</h5>
+
+  <ion-list>
+    <form #f="ngForm">
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input id="email" name="email" ngModel required type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input id="password" name="password" ngModel required type="password"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+
+  <button ion-button icon-left type="button" [disabled]="!f.valid" (click)="onSignin(f)">
+    <ion-icon name="key"></ion-icon>
+    Sign In
+  </button>
+
+</ion-content>

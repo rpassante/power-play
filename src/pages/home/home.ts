@@ -1,25 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AppSettings } from '../../providers/app-settings'
+import {Team} from "../../models/team.model";
+import { Subscription } from 'rxjs/Subscription';
+import {TeamService} from "../../providers/team-service";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit{
+export class HomePage  implements OnInit, OnDestroy{
 
-  team:object;
+  myTeams:Team[];
+  selectedTeam:Team;
+  subscription: Subscription;
 
-  constructor(public navCtrl: NavController, public appSettings: AppSettings) {
+  constructor(public teamService: TeamService, public authService:AuthService) {
 
-  }
-
-  getTeam():void{
-    this.team = this.appSettings.getTeam();
   }
 
   ngOnInit(){
-    this.getTeam()
+
+    this.subscription = this.teamService.teamsChanged
+      .subscribe(
+        (teams: Team[]) => {
+          this.myTeams = teams;
+          this.selectedTeam = (this.myTeams[0] as Team);
+        }
+      );
+    this.myTeams = this.teamService.getMyTeams();
+
+  }
+
+  ionViewCanEnter(){
+    return this.authService.isAuthenticated();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
