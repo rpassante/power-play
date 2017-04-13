@@ -16,6 +16,7 @@ export class MyApp implements OnInit{
   rootPage:any = SigninComponent;
   tokenSubscription: Subscription;
   homePage:any = HomePage;
+  token:string;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
@@ -47,6 +48,6 @@ export class MyApp implements OnInit{
           }
         }
       );
-
+    this.token = this.authService.getToken();
   }
 }

@@ -8,15 +8,13 @@ import {TeamService} from "./team-service";
 import {AuthService} from "../pages/auth/auth.service";
 
 @Injectable()
-export class DataService {
-  token:string;
+export class DataService
 
   constructor(public http: Http,
               public appSettings:AppSettings,
               public teamService:TeamService,
               public authService:AuthService) {
     console.log('Hello DataService Provider');
-    this.token = this.authService.getToken();
   }
 
 
