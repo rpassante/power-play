@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { NavController } from 'ionic-angular';
 import {Team} from "../../models/team.model";
 import { Subscription } from 'rxjs/Subscription';
 import {TeamService} from "../../providers/team-service";
-import {AuthService} from "../auth/auth.service";
+import {AuthProvider} from "../auth/auth.service";
+import {NavController} from "ionic-angular";
+import {SigninPage} from "../auth/signin/signin.component";
 
 @Component({
   selector: 'page-home',
@@ -15,29 +16,29 @@ export class HomePage  implements OnInit, OnDestroy{
   selectedTeam:Team;
   subscription: Subscription;
 
-  constructor(public teamService: TeamService, public authService:AuthService) {
+  constructor(public navCtrl:NavController, public teamService: TeamService, public auth:AuthProvider) {
 
   }
 
   ngOnInit(){
 
-    this.subscription = this.teamService.teamsChanged
-      .subscribe(
-        (teams: Team[]) => {
-          this.myTeams = teams;
-          this.selectedTeam = (this.myTeams[0] as Team);
-        }
-      );
-    this.myTeams = this.teamService.getMyTeams();
-
   }
 
   ionViewCanEnter(){
-    return this.authService.isAuthenticated();
+    //return this.auth.isAuthenticated();
+    return true;
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
+  }
+
+  public logout(){
+    this.auth.logout().subscribe(data => {
+      this.navCtrl.push(SigninPage);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

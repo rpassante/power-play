@@ -1,40 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { AppSettings } from "./app-settings";
-import {Team} from "../models/team.model";
-import 'rxjs/Rx';
-import {Subject} from "rxjs/Subject";
-import {TeamService} from "./team-service";
-import {AuthService} from "../pages/auth/auth.service";
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class DataService
+export class DataProvider {
+  constructor(private af: AngularFire) {}
 
-  constructor(public http: Http,
-              public appSettings:AppSettings,
-              public teamService:TeamService,
-              public authService:AuthService) {
-    console.log('Hello DataService Provider');
+  push(path: string, data: any): Observable<any> {
+    return Observable.create(observer => {
+      this.af.database.list(path).push(data).then(firebaseNewData => {
+        // Return the uid created
+        let newData: any = firebaseNewData;
+        observer.next(newData.path.o[newData.path.o.length - 1]);
+      }, error => {
+        observer.error(error);
+      });
+    });
   }
 
+  update(path: string, data: any) {
+    this.af.database.object(path).update(data);
+  }
 
-  getTeams():any{
-    let uri:string = this.appSettings.API_ENDPOINT+'/teams.json';
-    this.http.get(uri)
-      .map(
-        (response: Response) => {
-          const teams: Team[] = response.json();
-          for (let team of teams) {
-            console.log(team);
-          }
-          return teams;
-        }
-      )
-      .subscribe(
-        (teams: Team[]) => {
-          this.teamService.setMyTeams(teams);
-        }
-      );
-  };
+  list(path: string): FirebaseListObservable<any> {
+    return this.af.database.list(path);
+  }
 
+  object(path: string): FirebaseObjectObservable<any> {
+    return this.af.database.object(path);
+  }
+
+  remove(path: string): Observable<any> {
+    return Observable.create(observer => {
+      this.af.database.object(path).remove().then(data => {
+        observer.next();
+      }, error => {
+        observer.error(error);
+      });
+    });
+  }
 }

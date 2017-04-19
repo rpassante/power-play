@@ -24,6 +24,11 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "713160885395139",
+            "APP_NAME": "RobertPassante",
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {}

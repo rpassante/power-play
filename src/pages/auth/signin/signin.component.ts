@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-import { AuthService } from '../auth.service';
+import { AuthProvider } from '../auth.service';
+import {NavController, ViewController} from "ionic-angular";
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html'
 })
-export class SigninComponent implements OnInit {
+export class SigninPage implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private viewCtrl:ViewController, private nav:NavController, private auth: AuthProvider) { }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false);
+  }
 
   ngOnInit() {
   }
 
   onSignin(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    this.authService.signinUser(email, password);
+    this.auth.loginWithEmail(form.value).subscribe(data => {
+      console.log(data);
+      this.nav.popToRoot();
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

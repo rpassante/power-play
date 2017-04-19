@@ -1,27 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import * as firebase from "firebase";
-import {SigninComponent} from "../pages/auth/signin/signin.component";
-import {Subscription} from "rxjs";
-import {HomePage} from "../pages/home/home";
-import {AuthService} from "../pages/auth/auth.service";
-import { Platform } from 'ionic-angular';
+import { HomePage } from "../pages/home/home";
+import {AuthProvider} from "../pages/auth/auth.service";
+import {Nav, Platform} from 'ionic-angular';
+import {SigninPage} from "../pages/auth/signin/signin.component";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
-  rootPage:any = SigninComponent;
-  tokenSubscription: Subscription;
-  homePage:any = HomePage;
-  token:string;
+  @ViewChild(Nav) nav: Nav;
+  isAppInitialized: boolean = false;
+  user: any;
+  rootPage: any = HomePage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-              public authService:AuthService) {
+              public auth:AuthProvider) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -31,23 +30,16 @@ export class MyApp implements OnInit{
   }
 
   ngOnInit(){
-    firebase.initializeApp({
-      apiKey: "AIzaSyA2qPFZGHFuipF_x-_NZQBo1tQf6z_ihNw",
-      authDomain: "power-play-c4867.firebaseapp.com",
-      databaseURL: "https://power-play-c4867.firebaseio.com",
-      projectId: "power-play-c4867",
-      storageBucket: "power-play-c4867.appspot.com",
-      messagingSenderId: "506289568155"
+
+    this.auth.getUserData().subscribe(data => {
+      if (!this.isAppInitialized) {
+        this.isAppInitialized = true;
+      }
+      this.user = data;
+      //SETUP Subscription for data
+    }, err => {
+      this.nav.push(SigninPage);
     });
 
-    this.tokenSubscription = this.authService.tokenChanged
-      .subscribe(
-        (token: string) => {
-          if(this.authService.isAuthenticated()){
-            console.log('User is already authenticated!');
-          }
-        }
-      );
-    this.token = this.authService.getToken();
   }
 }

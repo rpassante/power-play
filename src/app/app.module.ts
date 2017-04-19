@@ -10,16 +10,25 @@ import { SchedulePage } from '../pages/schedule/schedule';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AppSettings } from '../providers/app-settings';
-import { DataService } from "../providers/data-service";
+import { DataProvider } from "../providers/data-service";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {HttpModule} from "@angular/http";
 import {TeamService} from "../providers/team-service";
-import {AuthService} from "../pages/auth/auth.service";
-import {SigninComponent} from "../pages/auth/signin/signin.component";
-import {SignupComponent} from "../pages/auth/signup/signup.component";
+import {AuthProvider} from "../pages/auth/auth.service";
+import {SigninPage} from "../pages/auth/signin/signin.component";
+import {SignupPage} from "../pages/auth/signup/signup.component";
+import {AngularFire, AngularFireModule} from "angularfire2";
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyA2qPFZGHFuipF_x-_NZQBo1tQf6z_ihNw",
+  authDomain: "power-play-c4867.firebaseapp.com",
+  databaseURL: "https://power-play-c4867.firebaseio.com",
+  projectId: "power-play-c4867",
+  storageBucket: "power-play-c4867.appspot.com",
+  messagingSenderId: "506289568155"
+};
 
 @NgModule({
   declarations: [
@@ -29,13 +38,14 @@ import {SignupComponent} from "../pages/auth/signup/signup.component";
     HomePage,
     SchedulePage,
     TabsPage,
-    SigninComponent,
-    SignupComponent
+    SigninPage,
+    SignupPage
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,16 +55,17 @@ import {SignupComponent} from "../pages/auth/signup/signup.component";
     HomePage,
     SchedulePage,
     TabsPage,
-    SigninComponent,
-    SignupComponent
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AppSettings,
-    DataService,
+    DataProvider,
     TeamService,
-    AuthService,
+    AuthProvider,
+    AngularFire,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

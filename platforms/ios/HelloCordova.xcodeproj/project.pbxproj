@@ -21,6 +21,11 @@
 		3EA3197ED3D441C2AC098AA6 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B162A8C9E4B90B0B430CF /* CDVViewController+SplashScreen.m */; };
 		1C2F2B55E7274C45B0298040 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68FD9C957A4569BBD94A47 /* CDVStatusBar.m */; };
 		FDED845AF6444B9B8BB8DEFE /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D55ADDB7DC24C88A5B6A69F /* IonicKeyboard.m */; };
+		8525E9A0309D4F3C84055B13 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B07E6BAC589454CA5EC6CD7 /* FacebookConnectPlugin.m */; };
+		4EE784BED1924C33BB73A25D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF918F45C5E641F4B795AE93 /* Bolts.framework */; };
+		2A3B221045A14082AEE19D17 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868CD21E6BD442B5BE5D4E0A /* FBSDKCoreKit.framework */; };
+		2D1C2D5990044F77A9346D25 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEF1D56B6C14C1495B8C0AA /* FBSDKLoginKit.framework */; };
+		18BE4FDE1200483695738483 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB04C5B4131483885AE3056 /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,12 @@
 		76A222EF5FAF4CFE9FB18597 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7D55ADDB7DC24C88A5B6A69F /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		27115ED5E76B4F8B90F80D61 /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8B07E6BAC589454CA5EC6CD7 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F05F058274994741ABCD92B2 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		CF918F45C5E641F4B795AE93 /* Bolts.framework */ = {isa = PBXFileReference; name = "Bolts.framework"; path = "HelloCordova/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		868CD21E6BD442B5BE5D4E0A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "HelloCordova/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		EDEF1D56B6C14C1495B8C0AA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "HelloCordova/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		4DB04C5B4131483885AE3056 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "HelloCordova/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +91,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				4EE784BED1924C33BB73A25D /* Bolts.framework in Frameworks */,
+				2A3B221045A14082AEE19D17 /* FBSDKCoreKit.framework in Frameworks */,
+				2D1C2D5990044F77A9346D25 /* FBSDKLoginKit.framework in Frameworks */,
+				18BE4FDE1200483695738483 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +164,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF918F45C5E641F4B795AE93 /* Bolts.framework */,
+				868CD21E6BD442B5BE5D4E0A /* FBSDKCoreKit.framework */,
+				EDEF1D56B6C14C1495B8C0AA /* FBSDKLoginKit.framework */,
+				4DB04C5B4131483885AE3056 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,6 +205,8 @@
 				76A222EF5FAF4CFE9FB18597 /* CDVStatusBar.h */,
 				7D55ADDB7DC24C88A5B6A69F /* IonicKeyboard.m */,
 				27115ED5E76B4F8B90F80D61 /* IonicKeyboard.h */,
+				8B07E6BAC589454CA5EC6CD7 /* FacebookConnectPlugin.m */,
+				F05F058274994741ABCD92B2 /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -306,6 +327,7 @@
 				3EA3197ED3D441C2AC098AA6 /* CDVViewController+SplashScreen.m in Sources */,
 				1C2F2B55E7274C45B0298040 /* CDVStatusBar.m in Sources */,
 				FDED845AF6444B9B8BB8DEFE /* IonicKeyboard.m in Sources */,
+				8525E9A0309D4F3C84055B13 /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +361,13 @@
 				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_NAME = "HelloCordova";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Debug;
 		};
@@ -358,6 +387,13 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
 				PRODUCT_NAME = "HelloCordova";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Release;
 		};
@@ -385,6 +421,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				PRODUCT_NAME = "HelloCordova";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Debug;
 		};
@@ -411,6 +454,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				PRODUCT_NAME = "HelloCordova";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+					"\"HelloCordova/Plugins/cordova-plugin-facebook4\"",
+				);
 			};
 			name = Release;
 		};
