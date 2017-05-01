@@ -4,9 +4,9 @@ import {PlayerAuthCode} from "./playerAuthCode.model";
  */
 
 export class User {
-  $key:string;
+  public $key:string;
   public UID:string;
-  public admin:boolean
+  public admin:boolean;
   public firstName: string;
   public lastName: string;
   public email: string;
