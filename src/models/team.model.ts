@@ -1,20 +1,22 @@
 import {Person} from "./person.model";
 import {ScheduleItem} from "./scheduleItem.model";
+import {User} from "./user.model";
+import {Player} from "./player.model";
 
 export class Team{
 
-  public coaches: Person[];
+  public coaches: User[];
   public color: string;
   public division: string;
   public name: string;
-  public players: Person[]
-  public schedule: ScheduleItem[]
+  public players: Player[];
+  public schedule: ScheduleItem[];
 
-  constructor(coaches: Person[],
+  constructor(coaches: User[],
               color: string,
               division: string,
               name: string,
-              players: Person[],
+              players: Player[],
               schedule: ScheduleItem[]){
 
     this.coaches = coaches;

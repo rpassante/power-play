@@ -20,6 +20,7 @@ import {AuthProvider} from "../pages/auth/auth.service";
 import {SigninPage} from "../pages/auth/signin/signin.component";
 import {SignupPage} from "../pages/auth/signup/signup.component";
 import {AngularFire, AngularFireModule} from "angularfire2";
+import {UserService} from "../providers/user-service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyA2qPFZGHFuipF_x-_NZQBo1tQf6z_ihNw",
@@ -66,6 +67,7 @@ export const firebaseConfig = {
     TeamService,
     AuthProvider,
     AngularFire,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,11 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import * as firebase from "firebase";
-import { HomePage } from "../pages/home/home";
 import {AuthProvider} from "../pages/auth/auth.service";
 import {Nav, Platform} from 'ionic-angular';
 import {SigninPage} from "../pages/auth/signin/signin.component";
+import {TabsPage} from "../pages/tabs/tabs";
+import {UserService} from "../providers/user-service";
+import {User} from "../models/user.model";
 
 @Component({
   templateUrl: 'app.html'
@@ -13,13 +14,14 @@ import {SigninPage} from "../pages/auth/signin/signin.component";
 export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
   isAppInitialized: boolean = false;
-  user: any;
-  rootPage: any = HomePage;
+  user: User;
+  rootPage: any = TabsPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-              public auth:AuthProvider) {
+              public auth:AuthProvider,
+              public userProvider:UserService) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -37,6 +39,9 @@ export class MyApp implements OnInit{
       }
       this.user = data;
       //SETUP Subscription for data
+      this.userProvider.getUserData(this.user.$key).subscribe(userData => {
+
+      })
     }, err => {
       this.nav.push(SigninPage);
     });
