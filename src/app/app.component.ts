@@ -39,7 +39,7 @@ export class MyApp implements OnInit{
     this.auth.getUserData().subscribe(data => {
       this.user = data;
       //SETUP Subscription for data
-      this.userProvider.loadInitialData(this.user.$key).subscribe(userData => {
+      this.userProvider.getUserData(this.user.$key).subscribe(userData => {
         console.log(userData);
       })
     }, err => {

@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
-import { AngularFire } from 'angularfire2';
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs/Observable";
+import {AngularFire, FirebaseListObservable} from "angularfire2";
+import {AppSettings} from "./app-settings";
+import {User} from "../models/user.model";
 
-/*
-  Generated class for the UserService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class UserService {
 
-  private users_ref = this.af.database.list('users').$ref.ref;
+  private currentUser:FirebaseListObservable<any>;
 
-  constructor(private af: AngularFire) {
+  constructor(public af:AngularFire, public appSettings:AppSettings) {
     console.log('Hello UserService Provider');
   }
 
-  public loadInitialData(UID:string){
-    return Observable.create(observer => {
-      this.af.database.list('users').then(userData => {
-        observer.next(userData);
-      }, error => {
-        observer.error(error);
-      });
+  public getUserData(UID:string):FirebaseListObservable<any>{
+    this.currentUser = this.af.database.list('/users',{
+      query:{
+        orderByChild: 'UID',
+        equalTo: UID
+      }
     });
+
+    this.currentUser.subscribe( userData => {
+      this.appSettings.setCurrentUser(userData[0]);
+    });
+
+    return this.currentUser;
   }
 
 }
