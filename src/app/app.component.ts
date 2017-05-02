@@ -2,11 +2,12 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthProvider} from "../pages/auth/auth.service";
-import {Nav, Platform} from 'ionic-angular';
 import {SigninPage} from "../pages/auth/signin/signin.component";
 import {TabsPage} from "../pages/tabs/tabs";
+import {DataProvider} from "../providers/data-service";
+import {LoadingOverlayService} from "../providers/loading-overlay-service";
+import {Nav, Platform} from "ionic-angular";
 import {UserService} from "../providers/user-service";
-import {User} from "../models/user.model";
 
 @Component({
   templateUrl: 'app.html'
@@ -14,14 +15,16 @@ import {User} from "../models/user.model";
 export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
   isAppInitialized: boolean = false;
-  user: User;
+  user: any;
   rootPage: any = TabsPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
+              public loadingOverlayService: LoadingOverlayService,
               public auth:AuthProvider,
-              public userProvider:UserService) {
+              public dataProvider:DataProvider,
+              public userProvider: UserService) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -32,19 +35,25 @@ export class MyApp implements OnInit{
   }
 
   ngOnInit(){
-
+    this.loadingOverlayService.showLoaderOverlay();
     this.auth.getUserData().subscribe(data => {
-      if (!this.isAppInitialized) {
-        this.isAppInitialized = true;
-      }
       this.user = data;
       //SETUP Subscription for data
-      this.userProvider.getUserData(this.user.$key).subscribe(userData => {
-
+      this.userProvider.loadInitialData(this.user.$key).subscribe(userData => {
+        console.log(userData);
       })
     }, err => {
       this.nav.push(SigninPage);
     });
 
   }
+
+  public logout(){
+    this.auth.logout().subscribe(data => {
+      this.nav.push(SigninPage);
+    }, err => {
+      console.log(err);
+    });
+  }
+
 }

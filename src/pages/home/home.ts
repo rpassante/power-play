@@ -2,9 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Team} from "../../models/team.model";
 import { Subscription } from 'rxjs/Subscription';
 import {TeamService} from "../../providers/team-service";
-import {AuthProvider} from "../auth/auth.service";
-import {NavController} from "ionic-angular";
-import {SigninPage} from "../auth/signin/signin.component";
 
 @Component({
   selector: 'page-home',
@@ -16,7 +13,7 @@ export class HomePage  implements OnInit, OnDestroy{
   selectedTeam:Team;
   subscription: Subscription;
 
-  constructor(public navCtrl:NavController, public teamService: TeamService, public auth:AuthProvider) {
+  constructor(public teamService: TeamService) {
 
   }
 
@@ -33,12 +30,6 @@ export class HomePage  implements OnInit, OnDestroy{
     //this.subscription.unsubscribe();
   }
 
-  public logout(){
-    this.auth.logout().subscribe(data => {
-      this.navCtrl.push(SigninPage);
-    }, err => {
-      console.log(err);
-    });
-  }
+
 
 }

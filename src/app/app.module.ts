@@ -21,6 +21,8 @@ import {SigninPage} from "../pages/auth/signin/signin.component";
 import {SignupPage} from "../pages/auth/signup/signup.component";
 import {AngularFire, AngularFireModule} from "angularfire2";
 import {UserService} from "../providers/user-service";
+import {HeaderComponent} from "../pages/header/header";
+import {LoadingOverlayService} from "../providers/loading-overlay-service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyA2qPFZGHFuipF_x-_NZQBo1tQf6z_ihNw",
@@ -34,6 +36,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    HeaderComponent,
     AboutPage,
     ContactPage,
     HomePage,
@@ -51,6 +54,7 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HeaderComponent,
     AboutPage,
     ContactPage,
     HomePage,
@@ -68,6 +72,7 @@ export const firebaseConfig = {
     AuthProvider,
     AngularFire,
     UserService,
+    LoadingOverlayService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,1 +1,2 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav [root]="rootPage" *ngIf="isAppInitialized"></ion-nav>
+<div class="staticBackground" *ngIf="!isAppInitialized"></div>
