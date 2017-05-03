@@ -1,4 +1,3 @@
-import {PlayerAuthCode} from "./playerAuthCode.model";
 /**
  * Created by robpassante on 4/11/17.
  */
@@ -11,8 +10,9 @@ export class User {
   public lastName: string;
   public email: string;
   public phone: string;
+  public players: object;
 
-  constructor($key:string, UID: string, admin: boolean, firstName: string, lastName: string, email: string, phone: string) {
+  constructor($key:string, UID: string, admin: boolean, firstName: string, lastName: string, email: string, phone: string, players:object) {
     this.$key = $key;
     this.UID = UID;
     this.admin = admin;
@@ -20,5 +20,6 @@ export class User {
     this.lastName = lastName;
     this.email = email;
     this.phone = phone;
+    this.players = players;
   }
 }

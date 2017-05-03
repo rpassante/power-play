@@ -4,15 +4,16 @@
 
 export class ScheduleItem {
 
-  public date:string;
-  public endTime:string;
-  public startTime:string
-  public type:string
+  public teams:object;
+  public startDate:string;
+  public endDate:string;
+  public type:string;
 
-  constructor (date:string, endTime:string, startTime:string, type:string){
-    this.date = date;
-    this.startTime = startTime;
-    this.endTime = endTime;
+
+  constructor(teams: Object, startDate: string, endDate: string, type: string) {
+    this.teams = teams;
+    this.startDate = startDate;
+    this.endDate = endDate;
     this.type = type;
   }
 }

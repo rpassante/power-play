@@ -1,24 +1,14 @@
-import {Person} from "./person.model";
-import {ScheduleItem} from "./scheduleItem.model";
-import {User} from "./user.model";
-import {Player} from "./player.model";
-
 export class Team{
 
-  public coaches: User[];
+  public coaches: object;
   public color: string;
   public division: string;
   public name: string;
-  public players: Player[];
-  public schedule: ScheduleItem[];
+  public players: object;
+  public schedule: object;
 
-  constructor(coaches: User[],
-              color: string,
-              division: string,
-              name: string,
-              players: Player[],
-              schedule: ScheduleItem[]){
 
+  constructor(coaches: Object, color: string, division: string, name: string, players: Object, schedule: Object) {
     this.coaches = coaches;
     this.color = color;
     this.division = division;

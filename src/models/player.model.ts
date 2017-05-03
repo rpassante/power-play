@@ -3,15 +3,17 @@
  */
 
 export class Player {
+  public teams:object;
+  public users:object;
   public firstName: string;
   public lastName: string;
   public jerseyNumber: number;
-  public authCode: string;
 
-  constructor(firstName: string, lastName: string, jerseyNumber: number, authCode: string) {
+  constructor(teams:object, users:object, firstName: string, lastName: string, jerseyNumber: number) {
+    this.teams = teams;
+    this.users = users;
     this.firstName = firstName;
     this.lastName = lastName;
     this.jerseyNumber = jerseyNumber;
-    this.authCode = authCode;
   }
 }
