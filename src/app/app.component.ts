@@ -4,10 +4,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthProvider} from "../pages/auth/auth.service";
 import {SigninPage} from "../pages/auth/signin/signin.component";
 import {TabsPage} from "../pages/tabs/tabs";
-import {DataProvider} from "../providers/data-service";
 import {LoadingOverlayService} from "../providers/loading-overlay-service";
 import {Nav, Platform} from "ionic-angular";
 import {UserService} from "../providers/user-service";
+import {PlayerService} from "../providers/player-service";
 
 @Component({
   templateUrl: 'app.html'
@@ -23,8 +23,8 @@ export class MyApp implements OnInit{
               splashScreen: SplashScreen,
               public loadingOverlayService: LoadingOverlayService,
               public auth:AuthProvider,
-              public dataProvider:DataProvider,
-              public userProvider: UserService) {
+              public userProvider: UserService,
+              public playerProvider:PlayerService) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -41,6 +41,7 @@ export class MyApp implements OnInit{
       //SETUP Subscription for data
       this.userProvider.getUserData(this.user.$key).subscribe(userData => {
         console.log(userData);
+        this.playerProvider.getPlayersFromUser(userData[0].players);
       })
     }, err => {
       this.nav.push(SigninPage);

@@ -23,6 +23,7 @@ import {AngularFire, AngularFireModule} from "angularfire2";
 import {UserService} from "../providers/user-service";
 import {HeaderComponent} from "../pages/header/header";
 import {LoadingOverlayService} from "../providers/loading-overlay-service";
+import {PlayerService} from "../providers/player-service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyA2qPFZGHFuipF_x-_NZQBo1tQf6z_ihNw",
@@ -72,6 +73,7 @@ export const firebaseConfig = {
     AuthProvider,
     AngularFire,
     UserService,
+    PlayerService,
     LoadingOverlayService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

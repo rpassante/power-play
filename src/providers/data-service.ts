@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class DataProvider {
+
   constructor(private af: AngularFire) {}
 
   push(path: string, data: any): Observable<any> {
