@@ -21,6 +21,7 @@ export class PlayerService {
       const playerSubject = new Subject();
       const playerObservable = this.af.database.list('/players/', {
         query: {
+          orderByKey
           equalTo: playerSubject
         }
       });

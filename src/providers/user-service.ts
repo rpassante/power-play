@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AngularFire, FirebaseListObservable} from "angularfire2";
 import {AppSettings} from "./app-settings";
-import {User} from "../models/user.model";
 
 @Injectable()
 export class UserService {
