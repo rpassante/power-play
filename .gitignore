@@ -1,4 +1,7 @@
 .idea
 node_modules
 /npm-debug.log
-www
+www/build/
+platforms/
+plugins/
+.DS_Store
