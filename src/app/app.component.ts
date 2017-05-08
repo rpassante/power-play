@@ -40,8 +40,9 @@ export class MyApp implements OnInit{
       this.user = data;
       //SETUP Subscription for data
       this.userProvider.getUserData(this.user.$key).subscribe(userData => {
-        console.log(userData);
-        this.playerProvider.getPlayersFromUser(userData[0].players);
+        console.log('User: ' + userData);
+        //this.playerProvider.getPlayersFromUser(userData[0].players);
+        this.playerProvider.addPlayer();
       })
     }, err => {
       this.nav.push(SigninPage);
